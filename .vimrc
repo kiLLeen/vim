@@ -132,6 +132,7 @@ set undolevels=1000     " use many levels of undo
 set autoread            " auto read when a file is changed from the outside
 set mouse=a             " enables the mouse in all modes
 set foldlevelstart=99   " all folds open by default
+set noesckeys           " after esc is hit don't wait for modifier (arrow keys don't work in insert mode)
 
 " toggles vim's paste mode; when we want to paste something into vim from a
 " different application, turning on paste mode prevents the insertion of extra
