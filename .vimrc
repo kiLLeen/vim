@@ -315,6 +315,9 @@ let g:NumberToggleTrigger="<F2>"
 
 " Control P
 let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_user_command = 'find %s -type f'
+let g:ctrlp_max_files=0
+let g:ctrlp_max_depth=40
 
 " Visual effects
 set lazyredraw
