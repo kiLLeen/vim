@@ -36,6 +36,7 @@ Plugin 'mileszs/ack.vim'
 Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 Plugin 'rking/ag.vim'
 Plugin 'tpope/vim-fugitive'
+Plugin 'kien/ctrlp.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -69,7 +70,7 @@ syntax on
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " DISPLAY SETTINGS
 set background=dark
-set scrolloff=2         " 2 lines above/below cursor when scrolling
+set scrolloff=7         " 2 lines above/below cursor when scrolling
 set showmatch           " show matching bracket (briefly jump)
 set matchtime=2         " reduces matching paren blink time from the 5[00]ms def
 set showmode            " show mode in status bar (insert/replace/...)
@@ -312,6 +313,16 @@ nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:NumberToggleTrigger="<F2>"
 
+" Control P
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_user_command = 'find %s -type f'
+let g:ctrlp_max_files=0
+let g:ctrlp_max_depth=40
+
+" Visual effects
+set lazyredraw
+autocmd InsertEnter * set cul
+autocmd InsertLeave * set nocul
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Custom Binds                                "
