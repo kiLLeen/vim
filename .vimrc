@@ -170,7 +170,7 @@ set undodir=~/tmp,/var/tmp,/tmp,$TEMP
 " Look for tag def in a "tags" file in the dir of the current file, then for
 " that same file in every folder above the folder of the current file, until the
 " root.
-set tags=libraries/tags;tags;/
+set tags=libraries/tags,tags
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 nnoremap <c-tab> :tabn<CR>
