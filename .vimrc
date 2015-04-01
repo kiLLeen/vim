@@ -328,3 +328,5 @@ autocmd InsertLeave * set nocul
 "                             Custom Binds                                "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <c-w>t :tabnew<CR>:Ex<CR>
+nnoremap <leader>[ :diffget //2<CR>
+nnoremap <leader>] :diffget //3<CR>
