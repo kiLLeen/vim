@@ -4,7 +4,7 @@
 "                                preamble                                 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set shell=/bin/bash\ --rcfile\ ~/.bash_profile
+set shell=/usr/local/bin/zsh
 "let $PATH=system('echo $PATH')
 let $PATH.=':/usr/local/bin'
 
@@ -37,6 +37,9 @@ Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 Plugin 'rking/ag.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-rails'
+Plugin 'scrooloose/nerdtree'
+Plugin 'vim-ruby/vim-ruby'
 
 call vundle#end()
 filetype plugin indent on
@@ -244,6 +247,7 @@ let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_min_num_identifier_candidate_chars = 4
 let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
+let g:ycm_collect_identifiers_for_tags_file = 1
 
 nnoremap <leader>y :YcmForceCompileAndDiagnostics<cr>
 nnoremap <leader>pg :YcmCompleter GoTo<CR>
@@ -304,7 +308,7 @@ let g:snips_author                 = 'Neil Killeen'
 "                                Eclim                                    "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:EclimCompletionMethod = 'omnifunc'
-nnoremap <silent> <buffer> <leader>i :JavaImport<cr>
+nnoremap <silent> <buffer> <leader>m :JavaImport<cr>
 nnoremap <silent> <buffer> <leader>d :JavaDocSearch -x declarations<cr>
 nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
 
@@ -327,6 +331,10 @@ autocmd InsertLeave * set nocul
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Custom Binds                                "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <c-w>t :tabnew<CR>:Ex<CR>
+map <c-w>t :tabnew<CR>:Explore<CR>
 nnoremap <leader>[ :diffget //2<CR>
 nnoremap <leader>] :diffget //3<CR>
+
+"NERDTree
+
+map <C-n> :NERDTreeToggle<CR>
