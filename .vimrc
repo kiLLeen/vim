@@ -4,9 +4,7 @@
 "                                preamble                                 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set shell=/usr/local/bin/zsh
-"let $PATH=system('echo $PATH')
-let $PATH.=':/usr/local/bin'
+set shell=/usr/local/bin/zsh\ --rcs
 
 " Needed for vundle, will be turned on after vundle inits
 set nocompatible
@@ -28,13 +26,12 @@ Plugin 'vim-scripts/taglist.vim'
 Plugin 'bling/vim-airline'
 Plugin 'SirVer/ultisnips'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'jeffkreeftmeijer/vim-numbertoggle'
+"Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'fatih/vim-go'
+"Plugin 'fatih/vim-go'
 Plugin 'majutsushi/tagbar'
 Plugin 'mileszs/ack.vim'
-Plugin 'jeffkreeftmeijer/vim-numbertoggle'
-Plugin 'rking/ag.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-rails'
@@ -92,6 +89,7 @@ set guifont=PragmataPro:h14
 " completion options so you can complete the file without further keys
 set wildmode=longest,list,full
 set wildmenu            " completion with menu
+set wildignore+=*/build/*,*.rar,*.zip,*.jar,*.min.js,*.git,*.class,.git
 
 " This changes the default display of tab and CR chars in list mode
 set listchars=tab:▸\ ,eol:¬
@@ -127,6 +125,7 @@ set noshowmode          " don't show the mode ("-- INSERT --") at the bottom
 " misc settings
 set fileformat=unix     " file mode is unix
 set fileformats=unix,dos,mac   " detects unix, dos, mac file formats in that order
+set sessionoptions-=options    " removes local options from session saves
 
 set viminfo='20,\"500   " remember copy registers after quitting in the .viminfo
                         " file -- 20 jump links, regs up to 500 lines'
@@ -213,7 +212,10 @@ set formatoptions=tcroqnj
 "                            custom mappings                              "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+nnoremap <leader>[ :diffget //2<CR>
+nnoremap <leader>] :diffget //3<CR>
 
+map <c-w>t :tabnew<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                       ***  HERE BE PLUGINS  ***                         "
@@ -230,15 +232,6 @@ let g:solarized_contrast="high"
 let g:solarized_termtrans=1
 let g:solarized_hitrail=1
 colorscheme solarized
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                            vim-indent-guides                            "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-let g:indent_guides_enable_on_vim_startup = 0
-let g:indent_guides_color_change_percent = 7
-let g:indent_guides_guide_size = 1
-let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                              YouCompleteMe                              "
@@ -269,10 +262,7 @@ nnoremap <F4> :TagbarToggle<cr><c-w>=
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 if executable('ag')
-  let g:agprg = "ag --nocolor --nogroup --column"
-endif
-if executable('ack')
-  let g:ackprg = "ack --nocolor --nogroup --column"
+  let g:ackprg = "ag --vimgrep"
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -318,10 +308,11 @@ nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
 let g:NumberToggleTrigger="<F2>"
 
 " Control P
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_user_command = 'find %s -type f'
-let g:ctrlp_max_files=0
-let g:ctrlp_max_depth=40
+let g:ctrlp_working_path_mode = 0
+"let g:ctrlp_user_command = 'find %s -type f'
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|jar|min\.js|class)$'
+let g:ctrlp_max_depth = 40
+let g:ctrlp_max_files = 0
 
 " Visual effects
 set lazyredraw
@@ -331,10 +322,21 @@ autocmd InsertLeave * set nocul
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Custom Binds                                "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <c-w>t :tabnew<CR>:Explore<CR>
-nnoremap <leader>[ :diffget //2<CR>
-nnoremap <leader>] :diffget //3<CR>
 
 "NERDTree
 
 map <C-n> :NERDTreeToggle<CR>
+
+"Airline
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_left_sep = ""
+let g:airline_right_sep = ""
+let g:airline#extensions#tabline#left_sep = ""
+let g:airline_theme = "dark"
+
+"Ruby
+let g:rubycomplete_buffer_loading = 1
+let g:rubycomplete_classes_in_global = 1
+let g:rubycomplete_rails = 1
+let g:rubycomplete_load_gemfile = 1
