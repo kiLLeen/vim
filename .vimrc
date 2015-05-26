@@ -114,9 +114,9 @@ set magic               " change the way backslashes are used in search patterns
 set bs=indent,eol,start " Allow backspacing over everything in insert mode
 set nobackup            " no backup~ files.
 
-set tabstop=2           " number of spaces a tab counts for
-set shiftwidth=2        " spaces for autoindents
-set softtabstop=2
+set tabstop=3           " number of spaces a tab counts for
+set shiftwidth=3        " spaces for autoindents
+set softtabstop=3
 set shiftround          " makes indenting a multiple of shiftwidth
 set expandtab           " turn a tab into spaces
 set laststatus=2        " the statusline is now always shown
@@ -215,7 +215,7 @@ set formatoptions=tcroqnj
 nnoremap <leader>[ :diffget //2<CR>
 nnoremap <leader>] :diffget //3<CR>
 
-map <c-w>t :tabnew<cr>
+map <c-w>t :$tabedit <c-r>%<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                       ***  HERE BE PLUGINS  ***                         "
